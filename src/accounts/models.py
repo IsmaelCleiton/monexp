@@ -10,6 +10,7 @@ class Laboratory(models.Model):
         return  self.name
 
 class Experiment(models.Model):
+    id = models.BigAutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=100)
     laboratory = models.ForeignKey(Laboratory, on_delete=models.CASCADE)
     description = models.TextField(max_length=1000)
@@ -18,6 +19,7 @@ class Experiment(models.Model):
         return self.name
 
 class GroupExperiment(models.Model):
+    id = models.BigAutoField(primary_key=True, unique=True)
     experiment = models.ForeignKey(Experiment, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
@@ -26,6 +28,7 @@ class GroupExperiment(models.Model):
         return self.name
 
 class Animal(models.Model):
+    id = models.BigAutoField(primary_key=True, unique=True)
     group = models.ForeignKey(GroupExperiment, on_delete=models.CASCADE)
     identification = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
