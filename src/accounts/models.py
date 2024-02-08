@@ -1,6 +1,6 @@
+from django.utils.timezone import now
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
 
 class Laboratory(models.Model):
     id = models.BigAutoField(primary_key= True,unique=True)
@@ -27,22 +27,31 @@ class GroupExperiment(models.Model):
     def __str__(self):
         return self.name
 
+class AnimalDataFields(models.Model):
+    id = models.BigAutoField(primary_key=True, unique=True)
+    informations_fields = models.JSONField(default=dict({"campo1":"Exemplo"}))
+    
+    def __str__(self):
+        return 'informations_fields: {self.information_fields};'
+
 class Animal(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True)
     group = models.ForeignKey(GroupExperiment, on_delete=models.CASCADE)
     identification = models.CharField(max_length=100)
     species = models.CharField(max_length=100)
+    animal_data_fields = models.ForeignKey(AnimalDataFields)
 
     def __str__(self):
         return self.identification
 
 class AnimalData(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    size = models.FloatField()
-    weight = models.FloatField()
-
+    createdAt = models.DateTimeField(auto_now_add=True);
+    informations = models.JSONField(default=dict);
+    
     def __str__(self):
-        return 'identification: {self.animal.identification}; size: {self.size}; weight: {self.weight};'
+        return 'identification: {self.animal.identification}; informations: {self.informations};'
+    
 
 class Researcher(AbstractUser):
     id = models.BigAutoField(primary_key=True,unique=True)

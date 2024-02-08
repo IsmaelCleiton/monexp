@@ -61,18 +61,18 @@ class AnimalSerializer(serializers.ModelSerializer):
 
 class AnimalDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Animal
+        model = Animal
         fields = '__all__'
         depth = 1
 
 class AnimalDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model: AnimalData
+        model = AnimalData
         fields = '__all__'
 
 class AnimalDataDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model: AnimalData
+        model = AnimalData
         fields = '__all__'
         depth = 1
 
