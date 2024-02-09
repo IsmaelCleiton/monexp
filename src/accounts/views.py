@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import UserSerializer, ChangePasswordSerializer,ResetPasswordEmailSerializer
-from .models import Researcher, Laboratory, Experiment, GroupExperiment, Animal, AnimalData
-from accounts.serializers import LaboratorySerializer, ExperimentSerializer , GroupExperimentSerializer, AnimalSerializer, AnimalDataSerializer, LaboratoryDetailSerializer, ExperimentDetailSerializer, GroupExperimentDetailSerializer, AnimalDetailSerializer, AnimalDataDetailSerializer
+from .models import Researcher, Laboratory, Experiment, GroupExperiment, Animal, AnimalData, AnimalDataFields
+from accounts.serializers import LaboratorySerializer, ExperimentSerializer , GroupExperimentSerializer, AnimalSerializer, AnimalDataSerializer, LaboratoryDetailSerializer, ExperimentDetailSerializer, GroupExperimentDetailSerializer, AnimalDetailSerializer, AnimalDataDetailSerializer, AnimalDataFieldsSerializer, AnimalDataFieldsDetailSerializer
 from rest_framework import viewsets, permissions
 
 
@@ -148,3 +148,11 @@ class AnimalDataViewSet(viewsets.ModelViewSet):
         if self.action in ["list", "retrieve"]:
             return AnimalDataDetailSerializer
         return AnimalDataSerializer
+    
+class AnimalDataFields(viewsets.ModelViewSet):
+    queryset = AnimalDataFields.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+    def get_serializer_class(self):
+        if self.action in ["list", "retrieve"]:
+            return AnimalDataFieldsDetailSerializer
+        return AnimalDataFieldsSerializer

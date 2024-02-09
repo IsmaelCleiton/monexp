@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Researcher, Laboratory, Experiment, GroupExperiment, Animal, AnimalData
+from .models import Researcher, Laboratory, Experiment, GroupExperiment, Animal, AnimalData,AnimalDataFields
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -76,4 +76,13 @@ class AnimalDataDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
+class AnimalDataFieldsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnimalDataFields
+        fields = '__all__'
 
+class AnimalDataFieldsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnimalDataFields
+        fields = '__all__'
+        depth = 1
