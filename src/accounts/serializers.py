@@ -52,7 +52,7 @@ class GroupExperimentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupExperiment
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,7 +63,7 @@ class AnimalDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Animal
         fields = '__all__'
-        depth = 1
+        depth = 3
 
 class AnimalDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,7 +81,7 @@ class AnimalDataFieldsSerializer(serializers.ModelSerializer):
         model = AnimalDataFields
         fields = '__all__'
 
-class AnimalDataFieldsSerializer(serializers.ModelSerializer):
+class AnimalDataFieldsDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = AnimalDataFields
         fields = '__all__'

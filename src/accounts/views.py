@@ -89,7 +89,7 @@ class LaboratoryViewSet(viewsets.ModelViewSet):
   permission_classes = [permissions.IsAuthenticated]
 
   def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve","get"]:
             return LaboratoryDetailSerializer
         return LaboratorySerializer
 
@@ -105,7 +105,7 @@ class ExperimentViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve", "get"]:
             return ExperimentDetailSerializer
         return ExperimentSerializer
 
@@ -115,13 +115,13 @@ class GroupExperimentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = GroupExperiment.objects.all()
-        experiment = self.request.query_params.get('laboratory')
+        experiment = self.request.query_params.get('experiment')
         if experiment is not None:
             queryset = queryset.filter(experiment=experiment)
         return queryset
 
     def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve", "get"]:
             return GroupExperimentDetailSerializer
         return GroupExperimentSerializer
 
@@ -136,7 +136,7 @@ class AnimalViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve", "get"]:
             return AnimalDetailSerializer
         return AnimalSerializer
 
@@ -145,7 +145,7 @@ class AnimalDataViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve", "get"]:
             return AnimalDataDetailSerializer
         return AnimalDataSerializer
     
@@ -153,6 +153,6 @@ class AnimalDataFields(viewsets.ModelViewSet):
     queryset = AnimalDataFields.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
+        if self.action in ["list", "retrieve" , "get"]:
             return AnimalDataFieldsDetailSerializer
         return AnimalDataFieldsSerializer
